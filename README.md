@@ -25,5 +25,38 @@ Model → Controller → Simulation → Results
 
 into an intelligent engineering cycle:
 
-Model → Control → Monitor → Detect → Diagnose → Reconfigure → Optimize → Verify → Recover → Monitor Again
+                 ┌──────────────────────┐
+                 │ Physical System      │
+                 │ / Digital Twin       │
+                 └──────────┬───────────┘
+                            ↓
+                     Sensor Data
+                            ↓
+              ┌─────────────────────────┐
+              │ Physics Consistency     │
+              │ Engine                  │
+              └────────────┬────────────┘
+                           ↓
+                 ┌─────────────────┐
+                 │ Anomaly / Fault │
+                 │ Detection       │
+                 └────────┬────────┘
+                          ↓
+                  Fault Diagnosis
+                          ↓
+                 ┌────────────────┐
+                 │ Reconfiguration │
+                 └───────┬────────┘
+                         ↓
+                Controller Optimizer
+                         ↓
+              ┌─────────────────────┐
+              │ Verified Controller │
+              └──────────┬──────────┘
+                         ↓
+                    New Control
+                         ↓
+                   Verification
+                         │
+                         └──────────→ repeat
 

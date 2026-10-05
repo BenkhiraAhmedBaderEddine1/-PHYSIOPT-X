@@ -24,6 +24,7 @@ The framework therefore transforms the traditional control workflow from:
 
 Model → Controller → Simulation → Results
 
+
 into an intelligent engineering cycle:
 
                  ┌──────────────────────┐

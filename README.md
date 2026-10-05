@@ -21,6 +21,7 @@ PHYSIOPT-X provides an autonomous closed-loop methodology capable of optimizing 
 
 The framework therefore transforms the traditional control workflow from:
 
+
 Model → Controller → Simulation → Results
 
 into an intelligent engineering cycle:

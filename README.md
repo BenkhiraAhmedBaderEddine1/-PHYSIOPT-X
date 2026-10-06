@@ -62,3 +62,58 @@ into an intelligent engineering cycle:
                          │
                          └──────────→ repeat
 
+
+
+
+
+
+The Scientific Problem
+
+Assume we have:  
+
+
+
+Assume that we have the following mathematical model:
+
+$$
+\dot{x} = f(x,u,\theta)
+$$
+
+where:
+
+- $x$ = system state
+- $u$ = control input
+- $\theta$ = system parameters
+
+Initially, we have:
+
+$$
+\theta = \theta_0
+$$
+
+and the controller operates correctly.
+
+However, after some time:
+
+$$
+\theta \neq \theta_0
+$$
+
+This may occur due to:
+
+- Motor degradation
+- Load variation
+- Friction
+- Sensor bias
+- Actuator saturation
+- Battery voltage variation
+- External disturbances
+- Mechanical degradation
+
+As a result, the mathematical model no longer accurately represents the real system:
+
+$$
+\text{Model} \neq \text{Reality}
+$$
+
+This is where the problem begins.

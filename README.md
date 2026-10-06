@@ -117,3 +117,22 @@ $$
 $$
 
 This is where the problem begins.
+
+
+The PHYSIOPT-X Concept
+
+Instead of the system simply stating:
+
+"The controller failed."
+
+It attempts to determine:
+
+Why did the controller fail?
+
+Then:
+
+Can I recover automatically?
+
+Then:
+
+Can I mathematically verify that the recovery is actually better?

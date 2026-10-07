@@ -1,0 +1,35 @@
+Problem
+Autonomous reconfigurable control systems switch controllers in response to detected faults. Each candidate controller may be individually verified as stable in isolation, but the act of switching between controllers is a hybrid/switched system event, and arbitrary switching between stable subsystems can still produce an unstable overall trajectory (a classical and well-documented pitfall in switched systems theory). No existing applied FTC framework formally bounds this risk.
+
+Research Questions
+
+
+RQ1 (Theoretical): Under what switching-rate conditions can we guarantee
+     global exponential stability of a system whose controller is
+     reconfigured online in response to detected faults?
+
+RQ2 (Algorithmic): Can a Bayesian probabilistic diagnosis engine
+     outperform rule-based threshold diagnosis in classification
+     accuracy and false-alarm rate, under identical residual data?
+
+RQ3 (Estimation): Does EKF-based residual generation improve fault
+     detectability over an open-loop digital twin, particularly for
+     nonlinear plants?
+
+RQ4 (Empirical): Does PHYSIOPT-X show statistically significant
+     improvement (via paired hypothesis testing across Monte Carlo
+     trials) over PID, LQR, Adaptive-PID and MPC baselines, across
+     RMSE, recovery time, and control effort?
+
+RQ5 (Generality): Does the architecture generalize from a linear
+     plant (DC motor) to a nonlinear plant (robotic arm) without
+     structural redesign of the framework?
+
+
+#	Contribution	Type
+C1	Average dwell-time theorem applied to fault-triggered controller reconfiguration	Theoretical
+C2	Rigorous LTI-augmented closed-loop stability verifier for PID (exact eigenvalues, not simulation proxy)	Methodological
+C3	Bayesian MAP fault diagnosis engine with confusion-matrix benchmarking against rule-based diagnosis	Algorithmic
+C4	EKF-based residual generator generalizing detection to nonlinear plants	Algorithmic
+C5	Full open-source modular framework (PHYSIOPT-X) with 12+ reproducible fault scenarios and statistical validation protocol	Engineering/Empirical
+C6	Demonstration of generality across 2 case studies (linear DC motor, nonlinear robot arm)	Empirical

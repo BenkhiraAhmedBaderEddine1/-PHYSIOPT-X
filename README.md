@@ -30,6 +30,8 @@ Model → Controller → Simulation → Results
 
 into an intelligent engineering cycle:
 
+
+
                  ┌──────────────────────┐
                  │ Physical System      │
                  │ / Digital Twin       │

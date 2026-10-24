@@ -14,6 +14,7 @@ PHYSIOPT-X: Physics-Aware Self-Verifying Optimization and Control Framework for 
 
 ═══════════════════════════════════════════════════════════════════════════
 
+
 Project Overview
 PHYSIOPT-X is an advanced MATLAB/Simulink-based framework designed for the development of self-verifying, fault-aware, and self-reconfiguring control systems for autonomous cyber-physical systems.
 

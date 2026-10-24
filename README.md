@@ -3,7 +3,7 @@
 PHYSIOPT-X: Physics-Aware Self-Verifying Optimization and Control Framework for Autonomous Cyber-Physical Systems
 
 
-══════════════════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════════════════
 
 
 
@@ -11,7 +11,7 @@ PHYSIOPT-X: Physics-Aware Self-Verifying Optimization and Control Framework for 
 
 
 
-═══════════════════════════════════════════════════════════════════════════
+═════════════════════════════════════════════════════════════════════════════
 
 
 Project Overview

@@ -210,3 +210,113 @@ The motor provides a useful test environment because it has measurable physical 
 The architecture can later be extended to a mobile robot, robotic manipulator, or other cyber-physical system.
 3.1 System state
 Define the state vector:
+
+
+
+
+
+
+6. Fault detection versus fault diagnosis
+These are different tasks.
+
+Fault detection answers:
+Has the observed behavior become sufficiently inconsistent with the expected behavior to warrant an alarm?
+
+Fault diagnosis answers:
+Which fault or combination of faults best explains the available evidence?
+
+Fault isolation attempts to distinguish the affected component or subsystem.
+
+Fault accommodation modifies the control strategy to tolerate the identified condition.
+
+Fault recovery attempts to restore acceptable operation.
+
+A strong PHYSIOPT-X implementation must not confuse these stages.
+6.1 Initial fault library
+The first version should include the following reproducible fault scenarios.
+Fault ID	Fault	Simulation mechanism	Expected evidence
+F00	Nominal operation	No injected fault	Small residuals
+F01	Increased load	Increase \(T_L\)	Speed tracking degradation
+F02	Increased friction	Increase \(B\)	Increased steady-state torque requirement
+F03	Actuator degradation	Reduce \(\eta_a\)	Lower effective motor input
+F04	Sensor bias	Add offset to measured speed	Persistent measurement inconsistency
+F05	Parameter drift	Gradually change \(J\), \(B\), or \(R\)	Slowly increasing model mismatch
+F06	Measurement noise	Increase measurement noise variance	More variable residuals
+F07	Actuator saturation	Enforce voltage limits	Control command differs from requested input
+F08	Communication delay	Delay measurements or commands	Phase lag and prediction error
+F09	Multiple faults	Combine selected faults	Overlapping residual signatures
+
+
+The table describes proposed experiments, not results that have already been obtained.
+6.2 Fault signatures
+For a more advanced diagnosis system, each fault can be associated with a vector of features:
+\[
+\phi_k=
+\begin{bmatrix}
+r_{\omega,k}\\
+r_{i,k}\\
+\Delta y_k\\
+u_k\\
+\hat{J}_k\\
+\hat{B}_k\\
+\hat{\eta}_{a,k}
+\end{bmatrix}
+\]
+Here, the residuals, estimated parameters, and control signals provide complementary evidence.
+
+For example:
+- A load increase may affect mechanical acceleration while leaving the electrical circuit parameters unchanged.
+- A resistance increase may affect the current response and electrical time constant.
+- A sensor bias may produce disagreement between the measurement and a model prediction even when the underlying plant is healthy.
+- Actuator degradation may produce lower physical response for a given requested input.
+These signatures are not universally unique. Two faults may be observationally indistinguishable under a particular experiment.
+
+Consequently, diagnosis accuracy depends on the available sensors, excitation signals, operating conditions, model quality, and fault definitions.
+6.3 Advanced diagnosis options
+After the initial residual detector works, the framework can be extended using:
+1. Moving-window statistical tests.
+2. Cumulative-sum detection.
+3. Generalized likelihood-ratio methods.
+4. Model-based fault isolation.
+5. Recursive parameter estimation.
+6. Bayesian fault classification.
+7. Supervised machine-learning classifiers trained on simulated fault signatures.
+8. Unknown-fault detection based on out-of-distribution behavior.
+Machine learning should not replace the physics model without a reason. Its role is to complement model-based diagnosis where multiple faults generate similar residual patterns.
+PART IV — CONTROL AND OPTIMIZATION
+7. Baseline controller: PID
+The proportional-integral-derivative controller provides the baseline against which more advanced methods can be compared.
+
+Define the tracking error:
+\[
+e(t)=\omega_{\mathrm{ref}}(t)-\omega(t)
+\]
+The ideal PID law is:
+\[
+u(t)=K_pe(t)
++K_i\int_0^t e(\tau)\,d\tau
++K_d\frac{de(t)}{dt}
+\]
+where:
+- \(K_p\) controls proportional response.
+- \(K_i\) compensates for persistent tracking error.
+- \(K_d\) responds to error-rate changes.
+The implemented control command must respect the motor's voltage limits:
+\[
+u_{\mathrm{applied}}
+=
+\operatorname{sat}
+\left(
+u_{\mathrm{requested}},
+-V_{\max},V_{\max}
+\right)
+\]
+This distinction matters because the requested voltage and the applied voltage are not necessarily identical.
+7.1 Integral windup
+When the actuator saturates, the integral term can continue accumulating error even though the actuator cannot supply the requested input.
+
+This is called integral windup.
+
+The implementation should therefore include an anti-windup mechanism, such as conditional integration or back-calculation.
+
+The first executable prototype below uses a conditional-integration approach. A production-quality implementation should additionally evaluate derivative filtering, bumpless transfer, and recovery from prolonged saturation.

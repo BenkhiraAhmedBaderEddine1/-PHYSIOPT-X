@@ -102,7 +102,6 @@ PHYSIOPT-X is a physics-aware optimization and fault-tolerant control framework 
 <div align="center">
 
 
-```text
        ┌─────────────────────────────────────────┐
        │           PHYSICAL SYSTEM               │
        │       Sensors · Actuators · Plant       │
@@ -134,7 +133,7 @@ PHYSIOPT-X is a physics-aware optimization and fault-tolerant control framework 
                            │
                            ▼
                   CONTROLLED RESPONSE
-```
+
 
 </div>
 
